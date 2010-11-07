@@ -1,0 +1,52 @@
+<div class="pageTitle">
+  <h1>Edit <%= @partner.BzzID %></h1>
+</div>
+
+<div class="toolbar">
+  <div class="leftItem backButton">
+    <a href="<%= url_for :action => :show, :id => @partner.object %>">Cancel</a>
+  </div>
+  <div class="rightItem regularButton">
+    <a class="button" href="<%= url_for :action => :delete, :id => @partner.object %>">Delete</a>
+  </div>
+</div>
+
+<div class="content">
+  <form method="POST" action="<%= url_for :action => :update %>">
+    <input type="hidden" name="id" value="<%= @partner.object %>"/>
+    <ul>
+      
+          <li>
+            <label for="partner[BzzID]" class="fieldLabel">Bzzid</label>
+            <input type="text" name="partner[BzzID]" value="<%= @partner.BzzID %>" <%= placeholder( "Bzzid" ) %> />
+          </li>
+      
+          <li>
+            <label for="partner[Name]" class="fieldLabel">Name</label>
+            <input type="text" name="partner[Name]" value="<%= @partner.Name %>" <%= placeholder( "Name" ) %> />
+          </li>
+      
+          <li>
+            <label for="partner[Nick]" class="fieldLabel">Nick</label>
+            <input type="text" name="partner[Nick]" value="<%= @partner.Nick %>" <%= placeholder( "Nick" ) %> />
+          </li>
+      
+          <li>
+            <label for="partner[Phone]" class="fieldLabel">Phone</label>
+            <input type="text" name="partner[Phone]" value="<%= @partner.Phone %>" <%= placeholder( "Phone" ) %> />
+          </li>
+      
+          <li>
+            <label for="partner[Email]" class="fieldLabel">Email</label>
+            <input type="text" name="partner[Email]" value="<%= @partner.Email %>" <%= placeholder( "Email" ) %> />
+          </li>
+      
+          <li>
+            <label for="partner[Twitter]" class="fieldLabel">Twitter</label>
+            <input type="text" name="partner[Twitter]" value="<%= @partner.Twitter %>" <%= placeholder( "Twitter" ) %> />
+          </li>
+      
+    </ul>
+    <input type="submit" class="standardButton" value="Update"/>
+  </form>
+</div>
