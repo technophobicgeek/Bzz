@@ -1,16 +1,19 @@
-sdk: "/tmp/sdks/rhodes-2.2.3"
-sdkversion: 2.2.3
+--- 
+extensions: 
+- json
+- another-extension
 name: bzz-rhodes
+bbver: 4.6
+sdk: /var/lib/gems/1.8/gems/rhodes-2.2.3
+applog: rholog.txt
+build: debug
+wmsdk: Windows Mobile 6 Professional SDK (ARMV4I)
 version: 1.0
 vendor: rhomobile
-build: debug
-bbver: 4.6
-wmsdk: "Windows Mobile 6 Professional SDK (ARMV4I)"
-applog: rholog.txt
-iphone:
-  configuration: Debug
+sdkversion: 2.2.3
+iphone: 
+  provisionprofile: 
   sdk: iphonesimulator4.0
-  provisionprofile:
-  codesignidentity:
-  entitlements:
-extensions: ["json", "another-extension"]
+  entitlements: 
+  codesignidentity: 
+  configuration: Debug
