@@ -14,7 +14,7 @@ class Partner
   
   # model-specific code
   
-  set schema_version, '0.1' # pour data migration
+  set :schema_version, '0.1' # pour data migration
   
   #object properties
   property :bzzid, :string
