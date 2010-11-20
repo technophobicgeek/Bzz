@@ -2,7 +2,7 @@
 extensions: 
 - json
 - another-extension
-name: bzz-rhodes
+name: bzz
 bbver: 4.6
 sdk: /var/lib/gems/1.8/gems/rhodes-2.2.3
 applog: rholog.txt
