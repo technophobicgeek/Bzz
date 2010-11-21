@@ -65,4 +65,16 @@ class PartnerController < Rho::RhoController
     @partner.destroy if @partner
     redirect :action => :index
   end
+
+	# GET /Partner/{1}/edit
+  def session
+    @partner = Partner.find(@params['id'])
+    if @partner
+      render :action => :session
+    else
+      redirect :action => :index
+    end
+  end
+
+
 end
