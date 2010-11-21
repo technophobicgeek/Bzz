@@ -20,6 +20,16 @@ class PartnerController < Rho::RhoController
     end
   end
 
+  # GET /Partner/{1}
+  def info 
+    @partner = Partner.find(@params['id'])
+    if @partner
+      render :action => :info
+    else
+      redirect :action => :index
+    end
+  end
+
   # GET /Partner/new
   def new
     @partner = Partner.new
