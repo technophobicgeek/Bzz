@@ -16,7 +16,7 @@
     <% @partners.each do |partner| %>
     
         <li>
-          <a href="<%= url_for :action => :show, :id => partner.object %>">
+          <a href="<%= url_for :action => :info, :id => partner.object %>">
             <span class="title"><%= partner.bzzid %></span><span class="disclosure_indicator"></span>
           </a>
         </li>
