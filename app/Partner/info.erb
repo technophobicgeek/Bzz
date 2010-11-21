@@ -1,0 +1,48 @@
+<div class="pageTitle">
+  <h1><%= @partner.bzzid %></h1>
+</div>
+
+<div class="toolbar">
+  <div class="leftItem backButton">
+    <a href="<%= url_for :action => :index %>">Back</a>
+  </div>
+  <div class="rightItem regularButton">
+    <a href="<%= url_for :action => :edit, :id => @partner.object %>">Edit</a>
+  </div>
+</div>
+
+<div class="content">
+  <ul>
+    
+        <li>
+          <div class="itemLabel">Bzzid</div>
+          <div class="itemValue"><%= @partner.bzzid %></div>
+        </li>
+    
+        <li>
+          <div class="itemLabel">Name</div>
+          <div class="itemValue"><%= @partner.name %></div>
+        </li>
+    
+        <li>
+          <div class="itemLabel">Nick</div>
+          <div class="itemValue"><%= @partner.nick %></div>
+        </li>
+    
+        <li>
+          <div class="itemLabel">Phone</div>
+          <div class="itemValue"><%= @partner.phone %></div>
+        </li>
+    
+        <li>
+          <div class="itemLabel">Email</div>
+          <div class="itemValue"><%= @partner.email %></div>
+        </li>
+    
+        <li>
+          <div class="itemLabel">Twitter</div>
+          <div class="itemValue"><%= @partner.twitter %></div>
+        </li>
+    
+  </ul>
+</div>
