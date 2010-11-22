@@ -2,34 +2,33 @@
   <h1>LoveBzz</h1>
 </div>
 
+<!-- 
+Need the implement the following:
+	if a device is already set up, 
+		show device name on top
+	else
+		show set up device button
+-->
+
 <div class="toolbar">
-  <% if SyncEngine::logged_in > 0 %>
-      <div class="leftItem blueButton">
-        <a href="<%= url_for :controller => :Settings, :action => :do_sync %>">Sync</a>
-      </div>
-      <div class="rightItem regularButton">
-        <a href="<%= url_for :controller => :Settings, :action => :logout %>">Logout</a>
-      </div>
-  <% else %>
-      <div class="rightItem regularButton">
-        <a href="<%= url_for :controller => :Settings, :action => :login %>">Login</a>
-      </div>
-  <% end %>
+  <div class="centerItem regularButton">
+    <a href="">Setup vibe</a>
+  </div>
 </div>
 
-<div class="content">
-  <ul>
-    <li>
-      <a href="">
-				<span class="title">Me</span>
-				<span class="disclosure_indicator"/>
-      </a>
-     </li>
-     <li>
-      <a href="Partner">
-				<span class="title">Partner</span>
-				<span class="disclosure_indicator"/>
-      </a>
-    </li>
-  </ul>
+<br>
+<br>
+<p/>
+<div class="toolbar">
+	<div class="centerItem regularButton">
+		<a href="">Bzz me once!</a>
+	</div>
 </div>
+<p/>
+<div class="toolbar">
+	<div class="centerItem regularButton">
+		<a href="<%= url_for :controller => :Settings, :action => :session %>">Start session </a>
+	</div>
+</div>
+<p/>
+

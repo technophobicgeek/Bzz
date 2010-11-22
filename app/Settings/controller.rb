@@ -2,9 +2,11 @@ require 'rho'
 require 'rho/rhocontroller'
 require 'rho/rhoerror'
 require 'helpers/browser_helper'
+require 'helpers/session_helper'
 
 class SettingsController < Rho::RhoController
   include BrowserHelper
+	include SessionHelper
   
   def index
     @msg = @params['msg']
