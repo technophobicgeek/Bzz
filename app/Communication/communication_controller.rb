@@ -1,10 +1,12 @@
 require 'rho/rhocontroller'
 require 'helpers/browser_helper'
 require 'helpers/session_helper'
+require 'helpers/setup_helper'
 
 class CommunicationController < Rho::RhoController
   include BrowserHelper
 	include SessionHelper
+	include SetupHelper
 
   #GET /Communication
   def index
