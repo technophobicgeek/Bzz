@@ -1,62 +1,78 @@
 require 'rho/rhocontroller'
 require 'helpers/browser_helper'
 require 'helpers/session_helper'
-require 'helpers/setup_helper'
+require 'helpers/bluetooth_channel'
+require 'helpers/test_channel'
+require 'helpers/bluetooth_message_factory'
 
 class CommunicationController < Rho::RhoController
   include BrowserHelper
 	include SessionHelper
-	include SetupHelper
 
-  #GET /Communication
-  def index
-    @communications = Communication.find(:all)
-    render
-  end
 
-  # GET /Communication/{1}
-  def show
-    @communication = Communication.find(@params['id'])
-    if @communication
-      render :action => :show
-    else
-      redirect :action => :index
-    end
-  end
+	@@channel = nil
+	@@msgfactory = nil
 
-  # GET /Communication/new
-  def new
-    @communication = Communication.new
-    render :action => :new
-  end
+# The controller has member fields to store which channel it's using
+# to communicate with the device and which message generator 
+# is being used to translate abstract commands
 
-  # GET /Communication/{1}/edit
-  def edit
-    @communication = Communication.find(@params['id'])
-    if @communication
-      render :action => :edit
-    else
-      redirect :action => :index
-    end
-  end
+#	TODO There may be multiple devices/channels/messages
 
-  # POST /Communication/create
-  def create
-    @communication = Communication.create(@params['communication'])
-    redirect :action => :index
-  end
+	def select_channel
+		puts 'DEBUG: Selecting channel'
+		render :action => :selectchannel
+	end
 
-  # POST /Communication/{1}/update
-  def update
-    @communication = Communication.find(@params['id'])
-    @communication.update_attributes(@params['communication']) if @communication
-    redirect :action => :index
-  end
+##
+# When the bluetooth channel is selected, the channel is set to be a bluetooth channel
+# and the message factory is also set to be bluetooth
 
-  # POST /Communication/{1}/delete
-  def delete
-    @communication = Communication.find(@params['id'])
-    @communication.destroy if @communication
-    redirect :action => :index
-  end
+# TODO What happens when an existing device is reconnected? We probably should not
+# create multiple channel objects
+
+	def select_bluetooth_channel
+		puts 'DEBUG: Bluetooth channel selected'
+		@@channel = BluetoothChannel.new
+		@@msgfactory = BluetoothMessageFactory.new
+	end
+
+	def select_audio_channel
+	end
+
+	def select_test_channel
+		puts 'DEBUG: Test channel selected'
+		@@channel = TestChannel.new
+		@@msgfactory = BluetoothMessageFactory.new
+		puts @@channel
+		puts @@msgfactory
+		render :action => :index, :back => '/app/' 
+	end
+
+
+##
+# These following methods handle actual message-sending
+# TODO simplify these methods using ruby cleverness (meta)
+
+def send_high_message
+	msg = @@msgfactory.createMessage(:high)
+	@@channel.send(@@msgfactory.createMessage(:high))
+	redirect :action => :session
+end
+
+def send_med_message
+	@@channel.send(@@msgfactory.createMessage(:med))
+	render :action => :session
+end
+
+def send_low_message
+	@@channel.send(@@msgfactory.createMessage(:low))
+end
+
+def send_off_message
+	@@channel.send(@@msgfactory.createMessage(:off))
+	render :action => :session
+end
+
+
 end

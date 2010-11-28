@@ -1,4 +1,3 @@
-# A communication channel must implement 
 
 # = Class BluetoothChannel
 # 	This class handles the sending and receiving of messages over a bluetooth
@@ -9,10 +8,9 @@
 #		1. Error handling: what if there is no bluetooth device? What if the connection is dropped
 #		2. Identity: make sure the device is the right kind before sending data from it
 
-require 'channel.rb'
 require 'rho/rhobluetooth'
 
-class BluetoothChannel < Channel
+class BluetoothChannel
 
 	attr_accessor :message
 	
@@ -30,6 +28,8 @@ class BluetoothChannel < Channel
 	def initialize
     if Rho::BluetoothManager.is_bluetooth_available then
       Rho::BluetoothManager.set_device_name('Bluetooth Sender')
+		else
+			Alert.show_popup('No bluetooth device available')
 		end
 	end
 
