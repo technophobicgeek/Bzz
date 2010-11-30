@@ -40,6 +40,7 @@ class CommunicationController < Rho::RhoController
 		@@channel = chan.new
 		@@msgfactory = fact.new
 		$is_device_setup = true
+		WebView.navigate Rho::RhoConfig.start_path
 	end
 
 ##
@@ -64,7 +65,12 @@ class CommunicationController < Rho::RhoController
 
 	def send_message(cmd)
 		@@channel.send(@@msgfactory.createMessage(cmd))
-		redirect :action => :session
+		redirect :action => :session  # need generic: stay on current page action
+	end
+
+	# Head back to start page
+	def end_session
+		WebView.navigate Rho::RhoConfig.start_path
 	end
 
 end
