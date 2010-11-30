@@ -1,15 +1,13 @@
 require 'rho/rhocontroller'
 require 'helpers/browser_helper'
-require 'helpers/session_helper'
 require 'helpers/bluetooth_channel'
 require 'helpers/test_channel'
 require 'helpers/bluetooth_message_factory'
 
 class CommunicationController < Rho::RhoController
   include BrowserHelper
-	include SessionHelper
 
-
+	$is_device_setup = false
 	@@channel = nil
 	@@msgfactory = nil
 
@@ -18,12 +16,6 @@ class CommunicationController < Rho::RhoController
 # is being used to translate abstract commands
 
 #	TODO There may be multiple devices/channels/messages
-
-	def select_channel
-		puts 'DEBUG: Selecting channel'
-		render :action => :selectchannel
-	end
-
 ##
 # When the bluetooth channel is selected, the channel is set to be a bluetooth channel
 # and the message factory is also set to be bluetooth
@@ -33,8 +25,7 @@ class CommunicationController < Rho::RhoController
 
 	def select_bluetooth_channel
 		puts 'DEBUG: Bluetooth channel selected'
-		@@channel = BluetoothChannel.new
-		@@msgfactory = BluetoothMessageFactory.new
+		select_channel(BluetoothChannel,BluetoothMessageFactory)
 	end
 
 	def select_audio_channel
@@ -42,37 +33,38 @@ class CommunicationController < Rho::RhoController
 
 	def select_test_channel
 		puts 'DEBUG: Test channel selected'
-		@@channel = TestChannel.new
-		@@msgfactory = BluetoothMessageFactory.new
-		puts @@channel
-		puts @@msgfactory
-		render :action => :index, :back => '/app/' 
+		select_channel(TestChannel,BluetoothMessageFactory)
 	end
 
+	def select_channel(chan,fact)
+		@@channel = chan.new
+		@@msgfactory = fact.new
+		$is_device_setup = true
+	end
 
 ##
 # These following methods handle actual message-sending
 # TODO simplify these methods using ruby cleverness (meta)
 
-def send_high_message
-	msg = @@msgfactory.createMessage(:high)
-	@@channel.send(@@msgfactory.createMessage(:high))
-	redirect :action => :session
-end
+	def send_high_message
+		send_message :high
+	end
 
-def send_med_message
-	@@channel.send(@@msgfactory.createMessage(:med))
-	render :action => :session
-end
+	def send_med_message
+		send_message :med
+	end
 
-def send_low_message
-	@@channel.send(@@msgfactory.createMessage(:low))
-end
+	def send_low_message
+		send_message :low
+	end
 
-def send_off_message
-	@@channel.send(@@msgfactory.createMessage(:off))
-	render :action => :session
-end
+	def send_off_message
+		send_message :off
+	end
 
+	def send_message(cmd)
+		@@channel.send(@@msgfactory.createMessage(cmd))
+		redirect :action => :session
+	end
 
 end
