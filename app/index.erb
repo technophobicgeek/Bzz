@@ -10,31 +10,36 @@ Need the implement the following:
 		show set up device button
 -->
 
-<div class="toolbar">
-  <div class="centerItem regularButton">
-    <a href="<%= url_for :controller => :Communication, :action => :selectchannel%>">
-			Setup vibe
-		</a>
+<% if $is_device_setup == false %>
+
+  <div class="toolbar">
+    <div class="centerItem regularButton">
+      <a href="<%= url_for :controller => :Communication, :action => :selectchannel%>">
+        Setup vibe
+      </a>
+    </div>
   </div>
-</div>
 
-<br>
-<br>
-<p/>
-<div class="toolbar">
-	<div class="centerItem regularButton">
-		<a href="<%= url_for :controller => :Communication, :action => :send_bzz_message%>">
-			Bzz me once!
-		</a>
-	</div>
-</div>
-<p/>
-<div class="toolbar">
-	<div class="centerItem regularButton">
-		<a href="<%= url_for :controller => :Communication, :action => :session %>">
-			Start session 
-		</a>
-	</div>
-</div>
-<p/>
+<% else %>
 
+  <br>
+  <br>
+  <p/>
+  <div class="toolbar">
+    <div class="centerItem regularButton">
+      <a href="<%= url_for :controller => :Communication, :action => :send_bzz_message%>">
+        Bzz me once!
+      </a>
+    </div>
+  </div>
+  <p/>
+  <div class="toolbar">
+    <div class="centerItem regularButton">
+      <a href="<%= url_for :controller => :Communication, :action => :session %>">
+        Start session 
+      </a>
+    </div>
+  </div>
+  <p/>
+
+<% end %>
