@@ -13,7 +13,7 @@ class AppApplication < Rho::RhoApplication
     # SyncEngine::set_objectnotify_url("/app/Settings/sync_notify")
     # SyncEngine.set_notification(-1, "/app/Settings/sync_notify", '')
 
-		$is_device_setup = false # this should check for existing vibes
+		$is_device_setup = false
   end
 
 end

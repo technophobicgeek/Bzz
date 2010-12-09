@@ -9,10 +9,10 @@
 #		2. Identity: make sure the device is the right kind before sending data from it
 
 require 'rho/rhobluetooth'
+require 'helpers/abstract_channel'
 
-class BluetoothChannel
+class BluetoothChannel < AbstractChannel
 
-	attr_accessor :message
 	
 # Maintain info about the connected device and last-played role
   @@connected_device = nil

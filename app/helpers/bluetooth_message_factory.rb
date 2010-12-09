@@ -5,7 +5,6 @@
 # TODO This should be a singleton, possibly
 # TODO Should this be tied to the channel?
 
-#require 'singleton'
 
 class BluetoothMessageFactory
 	def initialize

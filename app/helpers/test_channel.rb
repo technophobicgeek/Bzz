@@ -1,7 +1,7 @@
-class TestChannel
+require 'helpers/abstract_channel'
 
-	attr_accessor :message
-	
+class TestChannel < AbstractChannel
+
 	def send(msg)
 		@message = msg
 		puts "DEBUG: #{msg}"
@@ -11,5 +11,4 @@ class TestChannel
 
 	def recv
 	end
-
 end  # Class TestChannel

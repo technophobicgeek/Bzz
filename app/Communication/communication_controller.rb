@@ -1,7 +1,6 @@
 require 'rho/rhocontroller'
 require 'helpers/browser_helper'
-require 'helpers/bluetooth_channel'
-require 'helpers/test_channel'
+require 'helpers/channel_factory'
 require 'helpers/bluetooth_message_factory'
 
 class CommunicationController < Rho::RhoController
@@ -25,7 +24,7 @@ class CommunicationController < Rho::RhoController
 
 	def select_bluetooth_channel
 		puts 'DEBUG: Bluetooth channel selected'
-		select_channel(BluetoothChannel,BluetoothMessageFactory)
+		select_channel(:bluetooth,BluetoothMessageFactory)
 	end
 
 	def select_audio_channel
@@ -33,12 +32,12 @@ class CommunicationController < Rho::RhoController
 
 	def select_test_channel
 		puts 'DEBUG: Test channel selected'
-		select_channel(TestChannel,BluetoothMessageFactory)
+		select_channel(:test,BluetoothMessageFactory)
 	end
 
-	def select_channel(chan,fact)
-		@@channel = chan.new
-		@@msgfactory = fact.new
+	def select_channel(channel_type,msgfact)
+		@@channel = ChannelFactory.new_instance(channel_type)
+		@@msgfactory = msgfact.new
 		$is_device_setup = true
 		WebView.navigate Rho::RhoConfig.start_path
 	end
@@ -65,7 +64,7 @@ class CommunicationController < Rho::RhoController
 
 	def send_message(cmd)
 		@@channel.send(@@msgfactory.createMessage(cmd))
-		redirect :action => :session  # need generic: stay on current page action
+		redirect :action => :session  # AJAX
 	end
 
 	# Head back to start page
