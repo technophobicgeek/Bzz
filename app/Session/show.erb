@@ -1,0 +1,53 @@
+<div class="pageTitle">
+  <h1><%= @session.id %></h1>
+</div>
+
+<div class="toolbar">
+  <div class="leftItem backButton">
+    <a href="<%= url_for :action => :index %>">Back</a>
+  </div>
+  <div class="rightItem regularButton">
+    <a href="<%= url_for :action => :edit, :id => @session.object %>">Edit</a>
+  </div>
+</div>
+
+<div class="content">
+  <ul>
+    
+        <li>
+          <div class="itemLabel">Id</div>
+          <div class="itemValue"><%= @session.id %></div>
+        </li>
+    
+        <li>
+          <div class="itemLabel">Name</div>
+          <div class="itemValue"><%= @session.name %></div>
+        </li>
+    
+        <li>
+          <div class="itemLabel">CreateTs</div>
+          <div class="itemValue"><%= @session.create_ts %></div>
+        </li>
+    
+        <li>
+          <div class="itemLabel">UseTs</div>
+          <div class="itemValue"><%= @session.use_ts %></div>
+        </li>
+    
+        <li>
+          <div class="itemLabel">Rating</div>
+          <div class="itemValue"><%= @session.rating %></div>
+        </li>
+    
+        <li>
+          <div class="itemLabel">Sequence</div>
+          <div class="itemValue"><%= @session.sequence %></div>
+        </li>
+    
+        <li>
+          <div class="itemLabel">Notes</div>
+          <div class="itemValue"><%= @session.notes %></div>
+        </li>
+    
+  </ul>
+</div>

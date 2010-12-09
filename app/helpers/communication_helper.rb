@@ -1,10 +1,7 @@
-require 'rho/rhocontroller'
-require 'helpers/browser_helper'
 require 'helpers/channel_factory'
 require 'helpers/bluetooth_message_factory'
 
-class CommunicationController < Rho::RhoController
-  include BrowserHelper
+module CommunicationHelper
 
 	$is_device_setup = false
 	@@channel = nil
@@ -64,7 +61,7 @@ class CommunicationController < Rho::RhoController
 
 	def send_message(cmd)
 		@@channel.send(@@msgfactory.createMessage(cmd))
-		redirect :action => :session  # AJAX
+		redirect :action => :controlpanel  # AJAX
 	end
 
 	# Head back to start page

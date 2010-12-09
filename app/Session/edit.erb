@@ -1,0 +1,57 @@
+<div class="pageTitle">
+  <h1>Edit <%= @session.id %></h1>
+</div>
+
+<div class="toolbar">
+  <div class="leftItem backButton">
+    <a href="<%= url_for :action => :show, :id => @session.object %>">Cancel</a>
+  </div>
+  <div class="rightItem regularButton">
+    <a class="button" href="<%= url_for :action => :delete, :id => @session.object %>">Delete</a>
+  </div>
+</div>
+
+<div class="content">
+  <form method="POST" action="<%= url_for :action => :update %>">
+    <input type="hidden" name="id" value="<%= @session.object %>"/>
+    <ul>
+      
+          <li>
+            <label for="session[id]" class="fieldLabel">Id</label>
+            <input type="text" name="session[id]" value="<%= @session.id %>" <%= placeholder( "Id" ) %> />
+          </li>
+      
+          <li>
+            <label for="session[name]" class="fieldLabel">Name</label>
+            <input type="text" name="session[name]" value="<%= @session.name %>" <%= placeholder( "Name" ) %> />
+          </li>
+      
+          <li>
+            <label for="session[create_ts]" class="fieldLabel">Create ts</label>
+            <input type="text" name="session[create_ts]" value="<%= @session.create_ts %>" <%= placeholder( "Create ts" ) %> />
+          </li>
+      
+          <li>
+            <label for="session[use_ts]" class="fieldLabel">Use ts</label>
+            <input type="text" name="session[use_ts]" value="<%= @session.use_ts %>" <%= placeholder( "Use ts" ) %> />
+          </li>
+      
+          <li>
+            <label for="session[rating]" class="fieldLabel">Rating</label>
+            <input type="text" name="session[rating]" value="<%= @session.rating %>" <%= placeholder( "Rating" ) %> />
+          </li>
+      
+          <li>
+            <label for="session[sequence]" class="fieldLabel">Sequence</label>
+            <input type="text" name="session[sequence]" value="<%= @session.sequence %>" <%= placeholder( "Sequence" ) %> />
+          </li>
+      
+          <li>
+            <label for="session[notes]" class="fieldLabel">Notes</label>
+            <input type="text" name="session[notes]" value="<%= @session.notes %>" <%= placeholder( "Notes" ) %> />
+          </li>
+      
+    </ul>
+    <input type="submit" class="standardButton" value="Update"/>
+  </form>
+</div>
