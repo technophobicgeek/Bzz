@@ -8,6 +8,7 @@ module CommunicationHelper
   $is_device_setup = false
   @@channel = nil
   @@msgfactory = nil
+  @@pattern = nil
 
 # The controller has member fields to store which channel it's using
 # to communicate with the device and which message generator 
@@ -23,7 +24,7 @@ module CommunicationHelper
 
   def select_bluetooth_channel
     puts 'DEBUG: Bluetooth channel selected'
-    select_channel(:bluetooth,BluetoothMessageFactory)
+    select_channel(:bluetooth,BluetoothMessageFactory) # TODO need abstract class here
   end
 
   def select_audio_channel
@@ -68,8 +69,9 @@ module CommunicationHelper
 
   def send_message(cmd)
     @@channel.send(@@msgfactory.createMessage(cmd))
+    @@pattern.add cmd
     redirect :action => :controlpanel  # TODO AJAX
   end
-  
+ 
 
 end

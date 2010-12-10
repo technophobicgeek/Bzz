@@ -67,12 +67,19 @@ class SessionController < Rho::RhoController
   # and then go to the controlpanel page
   
   def start_session
-    @pattern = PatternHelper::Pattern.new
+    @@pattern = PatternHelper::Pattern.new
     render :action => :controlpanel
   end
 
   # Head back to start page
   def end_session
+    puts 'DEBUG:'
+    puts @@pattern.inspect
+    
+    # Create a session entity, update its attributes and then go to index page
+    
+    #############
+    
     WebView.navigate Rho::RhoConfig.start_path
   end
   
