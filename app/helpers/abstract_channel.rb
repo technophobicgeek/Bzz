@@ -1,13 +1,13 @@
 class AbstractChannel
-	attr_accessor :message
+  attr_accessor :message
 
-	# Maintain two lists of messages: sent and received
-	# along with timestamps
+  # Maintain two lists of messages: sent and received
+  # along with timestamps
 
-	def send(msg)
-	end
+  def send(msg)
+  end
 
-	def recv
-	end
+  def recv
+  end
 
 end # Class AbstractChannel

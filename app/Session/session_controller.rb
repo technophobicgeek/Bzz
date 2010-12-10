@@ -1,10 +1,12 @@
 require 'rho/rhocontroller'
 require 'helpers/browser_helper'
 require 'helpers/communication_helper'
+require 'helpers/pattern_helper'
 
 class SessionController < Rho::RhoController
   include BrowserHelper
 	include CommunicationHelper
+  include PatternHelper
 
   #GET /Session
   def index
@@ -60,10 +62,18 @@ class SessionController < Rho::RhoController
 
 
 # Custom code
-# The  has member fields to store which channel it's using
-# to communicate with the device and which message generator 
-# is being used to translate abstract commands
 
+  # When a session is started, create a new instance of the pattern class
+  # and then go to the controlpanel page
+  
+  def start_session
+    @pattern = PatternHelper::Pattern.new
+    render :action => :controlpanel
+  end
 
-# Can these variables go in module?
+  # Head back to start page
+  def end_session
+    WebView.navigate Rho::RhoConfig.start_path
+  end
+  
 end

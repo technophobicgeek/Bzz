@@ -1,23 +1,23 @@
 
 # = Class BluetoothChannel
-# 	This class handles the sending and receiving of messages over a bluetooth
-#		channel. The bluetooth device is assumed to be set up and paired by the OS.
+#   This class handles the sending and receiving of messages over a bluetooth
+#    channel. The bluetooth device is assumed to be set up and paired by the OS.
 
 ## 
-#	TODO
-#		1. Error handling: what if there is no bluetooth device? What if the connection is dropped
-#		2. Identity: make sure the device is the right kind before sending data from it
+#  TODO
+#    1. Error handling: what if there is no bluetooth device? What if the connection is dropped
+#    2. Identity: make sure the device is the right kind before sending data from it
 
 require 'rho/rhobluetooth'
 require 'helpers/abstract_channel'
 
 class BluetoothChannel < AbstractChannel
 
-	
+  
 # Maintain info about the connected device and last-played role
   @@connected_device = nil
   @@sender = false
-	@@connection_status = "Disconnected"
+  @@connection_status = "Disconnected"
 
 ##
 # Check if there is a bluetooth device already?
@@ -25,20 +25,20 @@ class BluetoothChannel < AbstractChannel
 # In case of known device, we need to associate a message translator.
 # For now, bluetooth is probably hardcoded as a channel
 
-	def initialize
+  def initialize
     if Rho::BluetoothManager.is_bluetooth_available then
       Rho::BluetoothManager.set_device_name('Bluetooth Sender')
-		else
-			Alert.show_popup('No bluetooth device available')
-		end
-	end
+    else
+      Alert.show_popup('No bluetooth device available')
+    end
+  end
 
 ##
 # Send a message via bluetooth. The Bluetooth session must be started
 # in server role for sending messages
-	def send(msg)
+  def send(msg)
     @@sender = true
-		@message = msg
+    @message = msg
     if Rho::BluetoothManager.is_bluetooth_available then
       Rho::BluetoothManager.create_session(Rho::BluetoothManager::ROLE_SERVER, url_for( :action => :connection_callback))
     end
@@ -47,8 +47,8 @@ class BluetoothChannel < AbstractChannel
   
 
 
-	def recv
-	end
+  def recv
+  end
 
 # Connection callback
 # The job of this callback is to perform a job after creating a session
@@ -57,14 +57,14 @@ class BluetoothChannel < AbstractChannel
 
   def connection_callback 
     if @params['status'] == Rho::BluetoothManager::OK
-	     @@connected_device = @params['connected_device_name']
-			 @@connection_status = "Connected"
-  	   puts "CONNECTED: " + @@connected_device	# for debugging
-    	 Rho::BluetoothSession.set_callback(@@connected_device, url_for( :action => :session_callback))
-     	if @@sender
-      	puts "message to send: #{@message}"
-       	Rho::BluetoothSession.write(@@connected_device, msg) 
-     	end
+       @@connected_device = @params['connected_device_name']
+       @@connection_status = "Connected"
+       puts "CONNECTED: " + @@connected_device  # for debugging
+       Rho::BluetoothSession.set_callback(@@connected_device, url_for( :action => :session_callback))
+       if @@sender
+        puts "message to send: #{@message}"
+         Rho::BluetoothSession.write(@@connected_device, msg) 
+       end
     end
   end 
  
@@ -74,20 +74,20 @@ class BluetoothChannel < AbstractChannel
 
   def session_callback
     puts "SESSION CALLBACK"
-		event_type = @params['event_type']
-		connected_device = @params['connected_device_name']
+    event_type = @params['event_type']
+    connected_device = @params['connected_device_name']
     if connected_device == @@connected_device
-    	unless @@sender
+      unless @@sender
         if event_type == Rho::BluetoothSession::SESSION_INPUT_DATA_RECEIVED
         end
       end
-			# If this is not the sender, we might still receive other events
+      # If this is not the sender, we might still receive other events
       if event_type == Rho::BluetoothSession::SESSION_DISCONNECT
-					Alert.show_popup("The device #{@@connected_device} has been disconnected.")
-					@@connection_status = "Disconnected"
-					@@connected_device = nil
+          Alert.show_popup("The device #{@@connected_device} has been disconnected.")
+          @@connection_status = "Disconnected"
+          @@connected_device = nil
 
-					# TODO : Need to redirect user to the right page, maybe the setup device page?
+          # TODO : Need to redirect user to the right page, maybe the setup device page?
       end
     end
   end
