@@ -17,6 +17,10 @@ class BluetoothMessageFactory
       when :low then [10]
       when :med then [20]
       when :high then [30]
+      when 'off' then [0]
+      when 'low' then [10]
+      when 'med' then [20]
+      when 'high' then [30]
     end
     bluetooth_msg
   end

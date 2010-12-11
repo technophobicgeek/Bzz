@@ -7,7 +7,7 @@ class SessionController < Rho::RhoController
   include BrowserHelper
 	include CommunicationHelper
   include PatternHelper
-
+ 
   #GET /Session
   def index
     @sessions = Session.find(:all)
@@ -67,19 +67,41 @@ class SessionController < Rho::RhoController
   # and then go to the controlpanel page
   
   def start_session
-    @@pattern = PatternHelper::Pattern.new
+    @@pattern = PatternHelper::Pattern.new(Session.count + 1)
     render :action => :controlpanel
   end
 
   # Head back to start page
   def end_session
+    @@pattern.end_pattern(:off)
+    
     puts 'DEBUG:'
     puts @@pattern.inspect
     
-    # Create a session entity, update its attributes and then go to index page
+    # Create a session entity, update its attributes and then go to session edit page
+    session_vars = @@pattern.get_session_vars
+    
+    puts 'DEBUG:'
+    puts session_vars
+
+    @session = Session.create(session_vars)
     
     #############
+    redirect :action => :edit, :id => @session.object
     
+  end
+  
+  def replay_session
+    @session = Session.find(@params['id'])
+    
+    # Create a pattern from the session object
+    puts 'DEBUG'
+    puts @session.sequence
+    @@pattern = PatternHelper::PlayPattern.new(@session.sequence)
+    # Play the pattern
+    
+    play_pattern @@pattern
+    # Go to Home screen
     WebView.navigate Rho::RhoConfig.start_path
   end
   

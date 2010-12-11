@@ -65,6 +65,7 @@ module CommunicationHelper
   
   def send_bzz_message
     @@channel.send(@@msgfactory.createMessage(:med))  # TODO AJAX
+    WebView.navigate Rho::RhoConfig.start_path
   end
 
   def send_message(cmd)
@@ -73,5 +74,16 @@ module CommunicationHelper
     redirect :action => :controlpanel  # TODO AJAX
   end
  
+  ##
+  # For each item in the pattern
+  def play_pattern(pattern)
+    t = 0 # start
+    pattern.each do |p|
+      tnew = p['TS']
+      sleep (tnew - t)
+      send_message(p['CMD'])
+      t = tnew
+    end
+  end
 
 end

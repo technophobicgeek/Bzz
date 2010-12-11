@@ -7,7 +7,7 @@
     <a href="<%= Rho::RhoConfig.start_path %>">Home</a>
   </div>
   <div class="rightItem regularButton">
-    <a class="button" href="<%= url_for :action => :new %>">New</a>
+    <a class="button" href="<%= url_for :action => :start_session %>">New</a>
   </div>
 </div>
 
@@ -17,7 +17,8 @@
     
         <li>
           <a href="<%= url_for :action => :show, :id => session.object %>">
-            <span class="title"><%= session.id %></span><span class="disclosure_indicator"></span>
+            <span class="title"><%= session.name %></span>
+            <span class="disclosure_indicator"></span>
           </a>
         </li>
     

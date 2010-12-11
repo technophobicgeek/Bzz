@@ -3,45 +3,38 @@
 </div>
 
 <div class="toolbar">
-  <div class="leftItem backButton">
-    <a href="<%= url_for :action => :index %>">Back</a>
+  <div class="leftItem regularButton">
+    <a href="<%= url_for :action => :index %>">Show all</a>
+  </div>
+  <div class="centerItem regularButton">
+    <a href="<%= url_for :action => :edit, :id => @session.object %>">Edit</a>
   </div>
   <div class="rightItem regularButton">
-    <a href="<%= url_for :action => :edit, :id => @session.object %>">Edit</a>
+    <a href="<%= url_for :action => :replay_session, :id => @session.object %>">Play</a>
   </div>
 </div>
 
 <div class="content">
   <ul>
-    
-        <li>
-          <div class="itemLabel">Id</div>
-          <div class="itemValue"><%= @session.id %></div>
-        </li>
-    
         <li>
           <div class="itemLabel">Name</div>
           <div class="itemValue"><%= @session.name %></div>
         </li>
-    
+        <!-- TODO Format the date better -->
         <li>
-          <div class="itemLabel">CreateTs</div>
+          <div class="itemLabel">Created</div>
           <div class="itemValue"><%= @session.create_ts %></div>
         </li>
     
+        <!-- TODO Format the duration better -->
         <li>
-          <div class="itemLabel">UseTs</div>
-          <div class="itemValue"><%= @session.use_ts %></div>
+          <div class="itemLabel">Duration</div>
+          <div class="itemValue"><%= @session.duration %></div>
         </li>
     
         <li>
           <div class="itemLabel">Rating</div>
           <div class="itemValue"><%= @session.rating %></div>
-        </li>
-    
-        <li>
-          <div class="itemLabel">Sequence</div>
-          <div class="itemValue"><%= @session.sequence %></div>
         </li>
     
         <li>
