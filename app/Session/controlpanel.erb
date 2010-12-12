@@ -31,3 +31,24 @@
 		<a href="<%= url_for :action => :send_off_message%>">Off </a>
 	</div>
 </div>
+<p/>
+<!--
+<div class="toolbar">
+	<div class="centerItem regularButton">
+		<a href="#dummy" onClick="sendMessage('high')";>HighJAX </a>
+	</div>
+</div>
+<div id=#dummy></div>
+-->
+
+<script type="text/javascript">
+
+  function dummyFunction(cmd){
+  }
+
+  function sendMessage(cmd){
+    $.get('/app/Session/send_ajax_message', {cmd: cmd});
+    return false;
+  }
+
+</script>

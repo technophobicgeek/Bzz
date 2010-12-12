@@ -71,9 +71,22 @@ module CommunicationHelper
   def send_message(cmd)
     @@channel.send(@@msgfactory.createMessage(cmd))
     @@pattern.add cmd
-    redirect :action => :controlpanel  # TODO AJAX
+    render :action => :controlpanel  # TODO AJAX
   end
- 
+  
+  def callback
+    Webview.execute_js('dummyFunction();')
+  end
+  
+  def send_ajax_message
+    cmd = @params['cmd']
+    puts 'DEBUG:'
+    puts cmd
+    @@channel.send(@@msgfactory.createMessage(cmd))
+    @@pattern.add cmd
+    render :action => :callback
+  end
+  
   ##
   # For each item in the pattern
   def play_pattern(pattern)
