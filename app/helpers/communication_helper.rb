@@ -71,20 +71,21 @@ module CommunicationHelper
   def send_message(cmd)
     @@channel.send(@@msgfactory.createMessage(cmd))
     @@pattern.add cmd
-    render :action => :controlpanel  # TODO AJAX
+    redirect :action => :controlpanel
   end
   
   def callback
-    Webview.execute_js('dummyFunction();')
+    #WebView.execute_js('dummyFunction();');
+    puts 'callback: needs to execute script to change button color'
   end
   
   def send_ajax_message
     cmd = @params['cmd']
-    puts 'DEBUG:'
+    puts 'DEBUG: send_ajax_message'
     puts cmd
     @@channel.send(@@msgfactory.createMessage(cmd))
     @@pattern.add cmd
-    render :action => :callback
+    redirect :action => :callback
   end
   
   ##
