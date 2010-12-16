@@ -1,5 +1,5 @@
 require 'helpers/channel_factory'
-require 'helpers/bluetooth_message_factory'
+require 'helpers/translator_factory'
 
 module CommunicationHelper
 
@@ -7,7 +7,7 @@ module CommunicationHelper
   
   $is_device_setup = false
   @@channel = nil
-  @@msgfactory = nil
+  @@translator = nil
   @@pattern = nil
 
 # The controller has member fields to store which channel it's using
@@ -24,7 +24,7 @@ module CommunicationHelper
 
   def select_bluetooth_channel
     puts 'DEBUG: Bluetooth channel selected'
-    select_channel(:bluetooth,BluetoothMessageFactory) # TODO need abstract class here
+    select_channel(:bluetooth,:bluetooth) # TODO need abstract class here
   end
 
   def select_audio_channel
@@ -32,12 +32,12 @@ module CommunicationHelper
 
   def select_test_channel
     puts 'DEBUG: Test channel selected'
-    select_channel(:test,BluetoothMessageFactory)
+    select_channel(:test,:bluetooth)
   end
 
-  def select_channel(channel_type,msgfact)
+  def select_channel(channel_type,translator_type)
     @@channel = ChannelFactory.new_instance(channel_type)
-    @@msgfactory = msgfact.new
+    @@translator = TranslatorFactory.new_instance(translator_type)
     $is_device_setup = true
     WebView.navigate Rho::RhoConfig.start_path
   end
@@ -55,7 +55,7 @@ module CommunicationHelper
     cmd = @params['cmd']
     puts 'DEBUG: send_message'
     puts cmd
-    @@channel.send(@@msgfactory.createMessage(cmd))
+    @@channel.send(@@translator.createMessage(cmd))
     @@pattern.add cmd if @@pattern
     redirect :action => :callback
   end
