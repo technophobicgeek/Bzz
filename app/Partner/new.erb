@@ -1,0 +1,49 @@
+<div class="pageTitle">
+  <h1>New <%= @partner.title %></h1>
+</div>
+
+<div class="toolbar">
+  <div class="leftItem backButton">
+    <a class="cancel" href="<%= url_for :action => :index %>">Cancel</a>
+  </div>
+</div>
+
+<div class="content">
+  <form method="POST" action="<%= url_for :action => :create %>">
+    <input type="hidden" name="id" value="<%= @partner.object %>"/>
+    <ul>
+      
+          <li>
+            <label for="partner[bzzid]" class="fieldLabel">Bzzid</label>
+            <input type="text" name="partner[bzzid]" <%=
+            placeholder("Bzzid") %> />
+          </li>
+      
+          <li>
+            <label for="partner[name]" class="fieldLabel">Name</label>
+            <input type="text" name="partner[name]" <%=
+            placeholder("Name") %> />
+          </li>
+      
+          <li>
+            <label for="partner[email]" class="fieldLabel">Email</label>
+            <input type="text" name="partner[email]" <%=
+            placeholder("Email") %> />
+          </li>
+      
+          <li>
+            <label for="partner[twitter]" class="fieldLabel">Twitter</label>
+            <input type="text" name="partner[twitter]" <%=
+            placeholder("Twitter") %> />
+          </li>
+      
+          <li>
+            <label for="partner[mobile]" class="fieldLabel">Mobile</label>
+            <input type="text" name="partner[mobile]" <%=
+            placeholder("Mobile") %> />
+          </li>
+      
+    </ul>
+    <input type="submit" class="standardButton" value="Create"/>
+  </form>
+</div>

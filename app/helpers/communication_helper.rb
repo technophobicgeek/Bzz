@@ -45,46 +45,18 @@ module CommunicationHelper
   
   ##
   # These following methods handle actual message-sending
-  # TODO simplify these methods using ruby cleverness (meta)
 
-  def send_high_message
-    send_message :high
-  end
-
-  def send_med_message
-    send_message :med
-  end
-
-  def send_low_message
-    send_message :low
-  end
-
-  def send_off_message
-    send_message :off
-  end
-  
-  def send_bzz_message
-    @@channel.send(@@msgfactory.createMessage(:med))  # TODO AJAX
-    WebView.navigate Rho::RhoConfig.start_path
-  end
-
-  def send_message(cmd)
-    @@channel.send(@@msgfactory.createMessage(cmd))
-    @@pattern.add cmd
-    redirect :action => :controlpanel
-  end
-  
   def callback
     #WebView.execute_js('dummyFunction();');
     puts 'callback: needs to execute script to change button color'
   end
   
-  def send_ajax_message
+  def send_message
     cmd = @params['cmd']
-    puts 'DEBUG: send_ajax_message'
+    puts 'DEBUG: send_message'
     puts cmd
     @@channel.send(@@msgfactory.createMessage(cmd))
-    @@pattern.add cmd
+    @@pattern.add cmd if @@pattern
     redirect :action => :callback
   end
   

@@ -86,7 +86,9 @@ class SessionController < Rho::RhoController
 
     @session = Session.create(session_vars)
     
-    #############
+    # Destroy the pattern
+    @@pattern = nil
+
     redirect :action => :edit, :id => @session.object
     
   end
@@ -101,6 +103,8 @@ class SessionController < Rho::RhoController
     # Play the pattern
     
     play_pattern @@pattern
+    
+    @@pattern = nil
     # Go to Home screen
     WebView.navigate Rho::RhoConfig.start_path
   end
