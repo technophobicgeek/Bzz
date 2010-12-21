@@ -4,7 +4,6 @@ class Session
   include Rhom::PropertyBag
 
   # Uncomment the following line to enable sync with Session.
-  # enable :sync
+  enable :sync
 
-  #add model specifc code here
 end

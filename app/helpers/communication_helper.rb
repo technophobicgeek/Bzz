@@ -24,7 +24,7 @@ module CommunicationHelper
 
   def select_bluetooth_channel
     puts 'DEBUG: Bluetooth channel selected'
-    select_channel(:bluetooth,:bluetooth) # TODO need abstract class here
+    select_channel(:bluetooth,:bluetooth) 
   end
 
   def select_audio_channel
