@@ -73,7 +73,7 @@ class SessionController < Rho::RhoController
 
   # Head back to start page
   def end_session
-    @@pattern.end_pattern(:off)
+    @@pattern.end_pattern
     
     puts 'DEBUG:'
     puts @@pattern.inspect

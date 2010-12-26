@@ -9,5 +9,14 @@ class AbstractChannel
 
   def recv
   end
+  
+  def send_pulse
+  end
+  
+  def set_intensity
+  end
+  
+  def play_intensity
+  end
 
 end # Class AbstractChannel

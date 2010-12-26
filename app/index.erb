@@ -22,8 +22,7 @@
   <br>
   <div class="toolbar">
     <div class="leftItem">
-      <!--<a href="">Audio</a>-->
-      <a href="<%= url_for :controller => :Session, :action => :select_test_channel%>">Audio</a>
+      <a href="<%= url_for :controller => :Session, :action => :select_audio_channel%>">Audio</a>
     </div>
   </div>
   <br>
@@ -41,7 +40,7 @@
   <p/>
   <div class="toolbar">
     <div class="centerItem regularButton">
-      <a href="#dummy" onClick="sendMessage('med');">        
+      <a href="#dummy" onClick="sendPulse();">        
         Bzz me!
       </a>
     </div>

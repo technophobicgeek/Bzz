@@ -21,25 +21,36 @@ module PatternHelper
 
     def reset
       @sequence = []
+      @command = :off
       time_now = Time.now
       @create_ts = time_now.strftime('%m/%d/%y %I:%M %p')
-      @start_time = time_now.to_i
+      @last_time = time_now.to_i
+      @total_duration = 0
     end
      
     # The start time is recorded as that of the first non-off command
     def add(cmd)
       time_now_i = Time.now.to_i     
-      if @sequence.size == 0
-        return if cmd == :off
-        @start_time = time_now_i 
-      end      
-      ts = time_now_i - @start_time
-      @sequence << {"CMD" => cmd, "TS" => ts }
-      ts
+      if @sequence.size == 0 && @command == :off
+        unless cmd == :off
+	  @command = cmd
+	  puts "First command #{@command}"
+	  @last_time = time_now_i 
+	  return
+	end
+      else     
+	ts = time_now_i - @last_time
+	@sequence << {"CMD" => @command, "DUR" => ts }
+	puts "Adding command #{@command} to sequence for duration #{ts}"
+	@command = cmd
+	puts "Next command #{@command}"
+	@total_duration += ts
+	@last_time = time_now_i
+      end
     end
     
-    def end_pattern(end_cmd)
-      @duration = add(end_cmd)
+    def end_pattern
+      add(:off)
     end
       
     
@@ -62,7 +73,7 @@ module PatternHelper
         'name' => @name,
         'sequence' => serializeToJSON,
         'create_ts' => @create_ts,
-        'duration' => display_time(@duration)
+        'duration' => display_time(@total_duration)
       }
     end
     # method to make this an iterator

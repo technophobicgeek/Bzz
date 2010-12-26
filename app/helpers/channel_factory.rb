@@ -6,8 +6,8 @@ class ChannelFactory
     case channel_type
       when :bluetooth then
         BluetoothChannel.new
-      #when :audio then
-      #  AudioChannel.new
+      when :audio then
+        AudioChannel.new
       when :test then
         TestChannel.new
     end

@@ -1,0 +1,11 @@
+Pending issues
+
+* GUI
+  
+  * Settings: proper links, set up vibe, set up theme
+  * Button feedback when clicked
+
+* Controller
+  
+  * Audio controller
+  * Replace send_message with set_intensity and send_pulse methods for channels

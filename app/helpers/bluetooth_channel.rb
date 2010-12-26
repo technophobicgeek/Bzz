@@ -10,6 +10,8 @@
 
 require 'rho/rhobluetooth'
 require 'helpers/abstract_channel'
+require 'helpers/bluetooth_translator'
+
 
 class BluetoothChannel < AbstractChannel
 
@@ -19,6 +21,8 @@ class BluetoothChannel < AbstractChannel
   @@sender = false
   @@connection_status = "Disconnected"
   @@bluetooth_available = false
+  @@translator = BluetoothTranslator.new
+  @@message = nil
 
 ##
 # Check if there is a bluetooth device already?
@@ -38,23 +42,23 @@ class BluetoothChannel < AbstractChannel
 ##
 # Send a message via bluetooth. The Bluetooth session must be started
 # in server role for sending messages
-  def send(msg)
+  def send(cmd)
     @@sender = true
-    @message = msg
+    @@message = @@translator.createMessage(cmd)
     if @@bluetooth_available then
       if @@connected_device_name == nil then
         Rho::BluetoothManager.create_session(Rho::BluetoothManager::ROLE_SERVER, 
                                              url_for( :action => :connection_callback))
       else
-        write_message
+        write_message(@@message)
       end
     end
     render
   end
   
-  def write_message
-    puts "message to send: #{@@message}"
-    Rho::BluetoothSession.write(@@connected_device_name, @@message)
+  def write_message(msg)
+    puts "message to send: #{msg}"
+    Rho::BluetoothSession.write(@@connected_device_name, msg)
   end
 
   def recv
@@ -71,7 +75,7 @@ class BluetoothChannel < AbstractChannel
        @@connection_status = "Connected"
        puts "CONNECTED: " + @@connected_device_name  # for debugging
        Rho::BluetoothSession.set_callback(@@connected_device_name, url_for( :action => :session_callback))
-       write_message if @@sender
+       write_message(@@message) if @@sender
     end
   end 
  

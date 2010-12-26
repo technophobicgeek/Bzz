@@ -7,7 +7,6 @@ module CommunicationHelper
   
   $is_device_setup = false
   @@channel = nil
-  @@translator = nil
   @@pattern = nil
 
 # The controller has member fields to store which channel it's using
@@ -24,20 +23,21 @@ module CommunicationHelper
 
   def select_bluetooth_channel
     puts 'DEBUG: Bluetooth channel selected'
-    select_channel(:bluetooth,:bluetooth) 
+    select_channel(:bluetooth) 
   end
 
   def select_audio_channel
+    puts 'DEBUG: Audio channel selected'
+    select_channel(:audio)
   end
 
   def select_test_channel
     puts 'DEBUG: Test channel selected'
-    select_channel(:test,:bluetooth)
+    select_channel(:test)
   end
 
-  def select_channel(channel_type,translator_type)
+  def select_channel(channel_type)
     @@channel = ChannelFactory.new_instance(channel_type)
-    @@translator = TranslatorFactory.new_instance(translator_type)
     $is_device_setup = true
     WebView.navigate Rho::RhoConfig.start_path
   end
@@ -50,26 +50,34 @@ module CommunicationHelper
     #WebView.execute_js('dummyFunction();');
     puts 'callback: needs to execute script to change button color'
   end
+
+
+  def send_pulse
+    @@channel.send_pulse
+  end
   
-  def send_message
+  def set_intensity
     cmd = @params['cmd']
-    puts 'DEBUG: send_message'
+    puts 'DEBUG: set_intensity'
     puts cmd
-    @@channel.send(@@translator.createMessage(cmd))
+    channel_send cmd
     @@pattern.add cmd if @@pattern
     redirect :action => :callback
   end
-  
+
+
   ##
-  # For each item in the pattern
+  # For each item in the pattern, play command for duration
   def play_pattern(pattern)
-    t = 0 # start
     pattern.each do |p|
-      tnew = p['TS']
-      sleep (tnew - t)
-      send_message(p['CMD'])
-      t = tnew
+      channel_send(p['CMD'])
+      t = p['DUR']
+      sleep (t)
     end
   end
 
+  private
+    def channel_send(msg)
+      @@channel.send(msg) if @@channel # else raise exception?
+    end
 end
