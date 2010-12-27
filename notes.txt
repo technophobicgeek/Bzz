@@ -4,8 +4,9 @@ Pending issues
   
   * Settings: proper links, set up vibe, set up theme
   * Button feedback when clicked
+  * Cancel button doesn't work when saving patterns
 
 * Controller
   
   * Audio controller
-  * Replace send_message with set_intensity and send_pulse methods for channels
+  x Replace send_message with set_intensity and send_pulse methods for channels

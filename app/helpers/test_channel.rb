@@ -5,23 +5,10 @@ class TestChannel < AbstractChannel
 
   @@translator = BluetoothTranslator.new
 
-  def send(msg)
+  def set_intensity(msg)
+    puts 'DEBUG: TestChannel.set_intensity'
     @message = @@translator.createMessage(msg)
     puts "DEBUG: #{@message}"
   end
-  
 
-  def send_pulse
-    puts 'DEBUG: send_pulse'
-    send :high
-    sleep 0.4
-    send :off
-  end
-  
-  def set_intensity
-  end
-
-  def play_intensity
-  end
-  
 end  # Class TestChannel

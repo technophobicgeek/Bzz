@@ -1,13 +1,6 @@
 
 function dummyFunction(){}
 
-function sendMessage(msg) {
-  $.ajax({
-    url: '/app/Session/send_message',
-    data: {'cmd' : msg}
-  });
-}
-
 function sendPulse() {
   $.ajax({
     url: '/app/Session/send_pulse'

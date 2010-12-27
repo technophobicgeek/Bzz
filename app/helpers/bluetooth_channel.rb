@@ -42,7 +42,7 @@ class BluetoothChannel < AbstractChannel
 ##
 # Send a message via bluetooth. The Bluetooth session must be started
 # in server role for sending messages
-  def send(cmd)
+  def set_intensity(cmd)
     @@sender = true
     @@message = @@translator.createMessage(cmd)
     if @@bluetooth_available then

@@ -1,5 +1,6 @@
 require 'helpers/test_channel'
 require 'helpers/bluetooth_channel'
+require 'helpers/audio_channel'
 
 class ChannelFactory
   def self.new_instance(channel_type)

@@ -60,7 +60,8 @@ module CommunicationHelper
     cmd = @params['cmd']
     puts 'DEBUG: set_intensity'
     puts cmd
-    channel_send cmd
+    @@channel.set_intensity cmd
+    puts "DEBUG: done setting intensity for #{@@channel}"
     @@pattern.add cmd if @@pattern
     redirect :action => :callback
   end
@@ -70,14 +71,10 @@ module CommunicationHelper
   # For each item in the pattern, play command for duration
   def play_pattern(pattern)
     pattern.each do |p|
-      channel_send(p['CMD'])
-      t = p['DUR']
-      sleep (t)
+      @@channel.play_intensity(p['CMD'],p['DUR'])
     end
+    @@channel.turn_off
   end
 
-  private
-    def channel_send(msg)
-      @@channel.send(msg) if @@channel # else raise exception?
-    end
+
 end
