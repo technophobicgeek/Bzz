@@ -4,7 +4,7 @@ extensions:
 - json
 - another-extension
 bbver: 4.6
-sdk: /usr/lib/ruby/gems/1.8/gems/rhodes-2.2.6
+sdk: /home/technophobicgeek/rhodes/rhodes/
 android: 
   version: 2.1
 build: debug
