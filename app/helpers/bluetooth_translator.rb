@@ -13,14 +13,10 @@ class BluetoothTranslator
   def createMessage(abstract_msg)
     puts 'DEBUG: Creating Message for ' + abstract_msg
     bluetooth_msg = case abstract_msg
-      when :off then [0]
-      when :low then [10]
-      when :med then [20]
-      when :high then [30]
-      when 'off' then [0]
-      when 'low' then [10]
-      when 'med' then [20]
-      when 'high' then [30]
+      when :off,'off' then "0"
+      when :low,'low' then "1"
+      when :med,'med' then "2"
+      when :high,'high' then "3"
     end
     bluetooth_msg
   end

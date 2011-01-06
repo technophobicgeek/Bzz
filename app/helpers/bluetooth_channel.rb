@@ -58,7 +58,7 @@ class BluetoothChannel < AbstractChannel
   
   def write_message(msg)
     puts "message to send: #{msg}"
-    Rho::BluetoothSession.write(@@connected_device_name, msg)
+    Rho::BluetoothSession.write_string(@@connected_device_name, msg)
   end
 
   def recv
