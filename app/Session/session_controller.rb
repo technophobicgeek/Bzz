@@ -74,7 +74,7 @@ class SessionController < Rho::RhoController
   # Head back to start page
   def end_session
     puts "DEBUG: ending session"
-    @@channel.turn_off
+    $channel.turn_off
     @@pattern.end_pattern
     
     puts 'DEBUG:'
