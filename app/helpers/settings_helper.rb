@@ -41,5 +41,24 @@ module SettingsHelper
     $is_device_setup = true
     WebView.navigate Rho::RhoConfig.start_path
   end
+
+  ## Select UI theme
+  def select_controlpanel
+    puts 'DEBUG: controlpanel selected'
+    select_theme(:controlpanel)
+  end
+
+  def select_reversecontrolpanel
+    puts 'DEBUG: reversecontrolpanel selected'
+    select_theme(:reversecontrolpanel)
+  end
+
+  def select_theme(theme_type)
+    puts "DEBUG: #{theme_type} selected"
+    $theme = theme_type
+    WebView.navigate Rho::RhoConfig.start_path
+  end
+  
 end
   
+

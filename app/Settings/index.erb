@@ -24,7 +24,7 @@
 -->
     <li><a href="<%= url_for :action => :device_setup %>">Setup Vibe</a></li>
 
-    <li><a href="#">Select Theme</a></li>
+    <li><a href="<%= url_for :action => :theme_setup %>">Select Theme</a></li>
 
     <% if SyncEngine::logged_in > 0 %>
         <li><a href="<%= url_for :action => :logout %>">Sign Out</a></li>
