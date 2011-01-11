@@ -15,7 +15,7 @@ MinSeverity  = 1
 LogToOutput = 1
 LogCategories = *
 ExcludeLogCategories =
-KeepTrackOfLastVisitedPage = 1 
+KeepTrackOfLastVisitedPage = 0
 LastVisitedPage = ''
 
 # Sync server url. Typically this will look like 'http://<hostname>:<port>/application'
