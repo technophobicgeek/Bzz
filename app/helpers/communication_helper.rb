@@ -15,6 +15,10 @@ module CommunicationHelper
     puts 'callback: needs to execute script to change button color'
   end
 
+  def turn_off
+    $channel.turn_off if $channel
+  end
+  
 
   def send_pulse
     $channel.send_pulse if $channel

@@ -13,3 +13,9 @@ function setIntensity(intensity) {
     data: {'cmd' : intensity}
   });
 }
+
+function turnOff() {
+  $.ajax({
+    url: '/app/Session/turn_off'
+  });
+}

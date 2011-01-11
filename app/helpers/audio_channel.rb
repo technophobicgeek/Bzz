@@ -50,12 +50,12 @@ class AudioChannel < AbstractChannel
     def sound_file_map(cmd)      
       puts 'DEBUG: Getting sound file name for ' + cmd
       sound_file = case cmd
-	when :low then '/public/alerts/low_intensity_30s.mp3'
-	when :med then '/public/alerts/med_intensity_30s.mp3'
-	when :high then '/public/alerts/high_intensity_30s.mp3'
-	when 'low' then '/public/alerts/low_intensity_30s.mp3'
-	when 'med' then '/public/alerts/med_intensity_30s.mp3'
-	when 'high' then '/public/alerts/high_intensity_30s.mp3'
+        when :low then '/public/alerts/low_intensity_30s.mp3'
+        when :med then '/public/alerts/med_intensity_30s.mp3'
+        when :high then '/public/alerts/high_intensity_30s.mp3'
+        when 'low' then '/public/alerts/low_intensity_30s.mp3'
+        when 'med' then '/public/alerts/med_intensity_30s.mp3'
+        when 'high' then '/public/alerts/high_intensity_30s.mp3'
       end
       sound_file
     end	
