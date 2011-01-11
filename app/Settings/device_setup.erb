@@ -1,26 +1,33 @@
 <br>
 <br>
+<div class="toolbar">
+  <h3>  <span class="title">Setup Vibe</span>   </h3>
+</div>
+
 <div class="content">
-  <h2>
-    <span class="title">Vibe setup</span>
-  </h2>
-</div>
-<br>
-<br>
-<div class="toolbar">
-  <div class="leftItem">
-    <a href="<%= url_for  :action => :select_bluetooth_channel%>">Bluetooth</a>
-  </div>
-</div>
-<br>
-<div class="toolbar">
-  <div class="leftItem">
-    <a href="<%= url_for :action => :select_audio_channel%>">Audio</a>
-  </div>
-</div>
-<br>
-<div class="toolbar">
-  <div class="leftItem">
-    <a href="<%= url_for  :action => :select_test_channel%>">Test</a>
-  </div>
+
+  <ul>
+
+    <li>
+      <a href="<%= url_for :action =>:select_bluetooth_channel %>">
+        <span class="title">Bluetooth</span>
+        <span class="disclosure_indicator"></span>
+      </a>
+    </li>
+
+    <li>
+      <a href="<%= url_for :action =>:select_audio_channel %>">
+        <span class="title">Audio</span>
+        <span class="disclosure_indicator"></span>
+      </a>
+    </li>
+
+    <li>
+      <a href="<%= url_for :action =>:select_test_channel %>">
+        <span class="title">Test</span>
+        <span class="disclosure_indicator"></span>
+      </a>
+    </li>
+
+  </ul>
 </div>

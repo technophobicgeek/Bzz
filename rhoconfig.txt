@@ -15,11 +15,11 @@ MinSeverity  = 1
 LogToOutput = 1
 LogCategories = *
 ExcludeLogCategories =
-KeepTrackOfLastVisitedPage = 0 
+KeepTrackOfLastVisitedPage = 1 
 LastVisitedPage = ''
 
 # Sync server url. Typically this will look like 'http://<hostname>:<port>/application'
-syncserver = 'http://192.168.15.6:9292/application'
+#syncserver = 'http://192.168.15.6:9292/application'
 # syncserver = 'http://rhohub-technophobicgeek-a5c98ed5.rhosync.com/application'
 
 # To disable auto sync, uncomment the following line.

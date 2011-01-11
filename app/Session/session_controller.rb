@@ -5,7 +5,7 @@ require 'helpers/pattern_helper'
 
 class SessionController < Rho::RhoController
   include BrowserHelper
-	include CommunicationHelper
+  include CommunicationHelper
   include PatternHelper
  
   #GET /Session
@@ -68,7 +68,7 @@ class SessionController < Rho::RhoController
   
   def start_session
     @@pattern = PatternHelper::Pattern.new(Session.count + 1)
-    render :action => :controlpanel
+    render :action => $theme
   end
 
   # Head back to start page

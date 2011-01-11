@@ -7,6 +7,7 @@ module SettingsHelper
   
   $is_device_setup = false
   $channel = nil
+  $theme = :controlpanel
 
 # The controller has member fields to store which channel it's using
 # to communicate with the device and which message generator 

@@ -6,12 +6,9 @@ class AppApplication < Rho::RhoApplication
     # Super must be called *after* settings @tabs!
     @tabs = nil
     @@tabbar = nil
-# 
-#     @@toolbar = [
-#          {:action => :home},
-#          {:action => :sync},
-#          {:action => :options}
-#       ]
+    
+    @@toolbar = [{:action => :home}, {:action => :separator},{:action => :options} ]
+
     super
 
     # Uncomment to set sync notification callback to /app/Settings/sync_notify.

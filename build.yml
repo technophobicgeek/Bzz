@@ -1,21 +1,21 @@
 --- 
-name: bzz-rhodes
 extensions: 
 - json
 - another-extension
+name: Lovebzz
 bbver: 4.6
-sdk: /home/technophobicgeek/rhodes/rhodes/
-android: 
+android:
   version: 2.1
-build: debug
+sdk: /home/technophobicgeek/rhodes/rhodes
 applog: rholog.txt
-version: 1.0
+build: debug
 wmsdk: Windows Mobile 6 Professional SDK (ARMV4I)
-sdkversion: 2.2.5
+version: 1.0
 vendor: rhomobile
+sdkversion: 2.2.5
 iphone: 
   provisionprofile: 
   sdk: iphonesimulator4.0
-  codesignidentity: 
   entitlements: 
+  codesignidentity: 
   configuration: Debug
