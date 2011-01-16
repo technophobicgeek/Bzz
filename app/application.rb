@@ -16,6 +16,7 @@ class AppApplication < Rho::RhoApplication
     # SyncEngine.set_notification(-1, "/app/Settings/sync_notify", '')
 
 	$is_device_setup = false
+
   end
 
 end

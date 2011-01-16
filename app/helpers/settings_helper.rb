@@ -23,7 +23,7 @@ module SettingsHelper
 
   def select_bluetooth_channel
     puts 'DEBUG: Bluetooth channel selected'
-    select_channel(:bluetooth) 
+    select_channel(:bluetooth)
   end
 
   def select_audio_channel
@@ -43,6 +43,7 @@ module SettingsHelper
   end
 
   ## Select UI theme
+
   def select_controlpanel
     puts 'DEBUG: controlpanel selected'
     select_theme(:controlpanel)
