@@ -328,3 +328,21 @@ h1 {
 .content ul.settings li.alertMessage span.message {
     color: red;
 }
+
+
+.content div.controlpanelButton {
+    margin: 10px 10px 10px 10px;
+    height: 45px;
+    width: 284px;
+    line-height: 45px;
+    -webkit-appearance: push-button;
+}
+.content div.controlpanelButton a {
+    display: block;
+    width: 100%;
+    color: black;
+    text-align: center;
+}
+.content div .controlpanelButton .active{
+    background-color: #f00;
+}

@@ -19,3 +19,12 @@ function turnOff() {
     url: '/app/Session/turn_off'
   });
 }
+
+
+$(document).ready(function(){
+   var buttons = $('#controls .controlpanelButton');
+   buttons.bind('click',function(){
+      buttons.removeClass('active');
+      $(this).addClass('active');
+   });
+});
