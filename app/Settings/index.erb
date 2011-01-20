@@ -12,16 +12,7 @@
     <% if @msg %>
         <li style="color: red; text-align: center"><%= @msg %></li>
     <% end %>
-<!--
-   <li>
-      <div class="itemLabel">
-        <span class="title">Client ID:</span>
-      </div>
-      <div class="itemValue">
-        <span class="clientID"><%= Rhom::Rhom::client_id %></span>
-      </div>
-    </li>
--->
+
     <li><a href="<%= url_for :action => :device_setup %>">Setup Vibe</a></li>
 
     <li><a href="<%= url_for :action => :theme_setup %>">Select Theme</a></li>
