@@ -3,29 +3,14 @@
 </div>
 
 <div class="content">
-
   <ul>
-
-    <li>
-      <a href="<%= url_for :action =>:select_channel, :query => {:channel => :bluetooth} %>">
-        <span class="title">Bluetooth</span>
-        <span class="disclosure_indicator"></span>
-      </a>
-    </li>
-
-    <li>
-      <a href="<%= url_for :action =>:select_channel, :query => {:channel => :audio} %>">
-        <span class="title">Audio</span>
-        <span class="disclosure_indicator"></span>
-      </a>
-    </li>
-
-    <li>
-      <a href="<%= url_for :action =>:select_channel, :query => {:channel => :test} %>">
-        <span class="title">Test</span>
-        <span class="disclosure_indicator"></span>
-      </a>
-    </li>
-
+    <% ['Bluetooth','Audio','Test'].each do |dev| %>
+      <li>
+        <a href="<%= url_for :action =>:select_channel, :query => {:channel => dev.downcase.to_sym} %>">
+          <span class="title"><%= dev %></span>
+          <span class="disclosure_indicator"></span>
+        </a>
+      </li>
+    <% end %>
   </ul>
 </div>

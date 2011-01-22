@@ -5,11 +5,11 @@ require 'helpers/audio_channel'
 class ChannelFactory
   def self.new_instance(channel_type)
     case channel_type
-      when :bluetooth,'bluetooth' then
+      when :bluetooth then
         BluetoothChannel.new
-      when :audio,'audio' then
+      when :audio then
         AudioChannel.new
-      when :test,'test' then
+      when :test then
         TestChannel.new
     end
   end

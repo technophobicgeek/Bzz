@@ -14,19 +14,9 @@
 
 
 <div id="controls" class="content">
-  <div class="controlpanelButton">
-    <a href="#dummy" onClick="setIntensity('high');">High</a>
-  </div>
-  
-  <div class="controlpanelButton">
-    <a href="#dummy" onClick="setIntensity('med');">Med</a>
-  </div>
-  
-  <div class="controlpanelButton">
-    <a href="#dummy" onClick="setIntensity('low');">Low</a>
-  </div>
-  
-  <div class="controlpanelButton">
-    <a href="#dummy" onClick="setIntensity('off');">Off</a>
-  </div>
+  <% ['High','Med','Low','Off'].each do |cmd| %>
+    <div class="controlpanelButton">
+      <a href="#dummy" onClick="setIntensity('<%= cmd.downcase %>');"><%= cmd %></a>
+    </div>
+  <% end %>
 </div>

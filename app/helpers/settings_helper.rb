@@ -15,19 +15,16 @@ module SettingsHelper
 # TODO What happens when an existing device is reconnected? We probably should not
 # create multiple channel objects
 
-
-
   def select_channel
     puts 'DEBUG: select_channel'
     channel_type = @params['channel']
     puts "DEBUG: #{channel_type} selected"
-    $channel = ChannelFactory.new_instance(channel_type)
+    $channel = ChannelFactory.new_instance(channel_type.to_sym)
     $is_device_setup = true
     WebView.navigate Rho::RhoConfig.start_path
   end
 
   ## Select UI theme
-
 
   def select_theme
     puts 'DEBUG: select_theme'

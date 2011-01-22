@@ -12,7 +12,7 @@ module CommunicationHelper
 
   def callback
     #WebView.execute_js('dummyFunction();');
-    puts 'callback: needs to execute script to change button color'
+    puts 'callback'
   end
 
   def turn_off
