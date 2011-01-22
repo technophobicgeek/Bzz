@@ -329,20 +329,22 @@ h1 {
     color: red;
 }
 
-
-.content div.controlpanelButton {
+.content div.controlpanelButton,
+.content div.pulseButton {
     margin: 10px 10px 10px 10px;
     height: 45px;
     width: 284px;
     line-height: 45px;
     -webkit-appearance: push-button;
 }
-.content div.controlpanelButton a {
+.content div.controlpanelButton a,
+.content div.pulseButton a {
     display: block;
     width: 100%;
     color: black;
     text-align: center;
 }
-.content div .controlpanelButton .active{
+.content div .controlpanelButton .active,
+.content div .pulseButton .active{
     background-color: #f00;
 }

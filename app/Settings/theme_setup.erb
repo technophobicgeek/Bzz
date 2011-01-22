@@ -7,14 +7,14 @@
   <ul>
 
     <li>
-      <a href="<%= url_for :action =>:select_controlpanel %>">
+      <a href="<%= url_for :action =>:select_theme, :query => {:theme => :controlpanel} %>">
         <span class="title">Control Panel</span>
         <span class="disclosure_indicator"></span>
       </a>
     </li>
 
     <li>
-      <a href="<%= url_for :action =>:select_reversecontrolpanel %>">
+      <a href="<%= url_for :action =>:select_theme, :query => {:theme => :reversecontrolpanel} %>">
         <span class="title">Reverse Control Panel</span>
         <span class="disclosure_indicator"></span>
       </a>

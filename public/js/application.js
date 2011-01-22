@@ -1,3 +1,4 @@
+
 function dummyFunction(){}
 
 function sendPulse() {
@@ -26,4 +27,17 @@ $(document).ready(function(){
       buttons.removeClass('active');
       $(this).addClass('active');
    });
+});
+
+
+$(document).ready(function(){
+   var buttons = $('#controls .pulseButton');
+   buttons.bind('click',function(){
+      var $e = $(this);
+      buttons.removeClass('active');
+      $e.addClass('active');
+      setTimeout(function() {
+          buttons.removeClass('active');
+        }, 1000 );
+      });
 });
