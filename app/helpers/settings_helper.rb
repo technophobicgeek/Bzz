@@ -4,6 +4,7 @@ require 'helpers/channel_factory'
 module SettingsHelper
 
 # TODO these should not be class or global variables!!!!
+#       Can we use some kind of flat scope mechanism?
   
   $is_device_setup = false
   $channel = nil

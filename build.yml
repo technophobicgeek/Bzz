@@ -5,14 +5,14 @@ extensions:
 name: Lovebzz
 bbver: 4.6
 android:
-  version: 2.1
+  version: 2.3
 sdk: /home/technophobicgeek/rhodes/rhodes
 applog: rholog.txt
 build: debug
 wmsdk: Windows Mobile 6 Professional SDK (ARMV4I)
 version: 1.0
 vendor: rhomobile
-sdkversion: 2.2.5
+sdkversion: 2.3
 iphone: 
   provisionprofile: 
   sdk: iphonesimulator4.0

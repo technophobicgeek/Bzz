@@ -65,6 +65,11 @@ class SessionController < Rho::RhoController
 
   # When a session is started, create a new instance of the pattern class
   # and then go to the controlpanel page
+
+  def cancel
+    @@pattern = nil
+    WebView.navigate Rho::RhoConfig.start_path
+  end
   
   def start_session
     @@pattern = PatternHelper::Pattern.new(Session.count + 1)
